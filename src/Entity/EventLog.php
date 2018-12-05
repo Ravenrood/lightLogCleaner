@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EventLogRepository")
@@ -41,6 +42,32 @@ class EventLog
      * @ORM\JoinColumn(name="id_state", referencedColumnName="id")
      */
     private $state;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EventRequest", mappedBy="event_log")
+     */
+    protected $event_request;
+
+    /**
+     * @return mixed
+     */
+    public function getEventRequest()
+    {
+        return $this->event_request;
+    }
+
+    /**
+     * @param mixed $event_request
+     */
+    public function setEventRequest($event_request): void
+    {
+        $this->event_request = $event_request;
+    }
+
+    public function __construct()
+    {
+        $this->event_request = new ArrayCollection();
+    }
 
     /**
      * @return mixed

@@ -38,6 +38,28 @@ class EventRequest
     private $state;
 
     /**
+     * @ORM\ManyToOne(targetEntity="EventLog", inversedBy="event_request")
+     * @ORM\JoinColumn(name="id_event_log", referencedColumnName="id")
+     */
+    private $event_log;
+
+    /**
+     * @return mixed
+     */
+    public function getEventLog()
+    {
+        return $this->event_log;
+    }
+
+    /**
+     * @param mixed $event_log
+     */
+    public function setEventLog($event_log): void
+    {
+        $this->event_log = $event_log;
+    }
+
+    /**
      * @return mixed
      */
     public function getState()
