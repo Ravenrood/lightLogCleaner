@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\EventLog;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use DateTime;
 
 /**
  * @method EventLog|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,32 +20,19 @@ class EventLogRepository extends ServiceEntityRepository
         parent::__construct($registry, EventLog::class);
     }
 
-    // /**
-    //  * @return EventLog[] Returns an array of EventLog objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param DateTime $date
+     * @return mixed
+     */
+    public function findByEventStartDate(DateTime $date)
     {
         return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('e.event_start_date <= :val')
+            ->setParameter('val', $date)
             ->orderBy('e.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?EventLog
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
