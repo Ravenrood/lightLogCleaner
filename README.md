@@ -1,16 +1,17 @@
-#LightLogCleaner simple Database log cleaner for log events
+### LightLogCleaner simple Database log cleaner for log events
 
-#-clone project from
-https://github.com/Ravenrood/lightLogCleaner.git
+######1 - Clone project from
 
-#-configure and then create DB
-php bin/console doctrine:database:create
+[https://github.com/Ravenrood/lightLogCleaner.git]
 
-#-updateDB
-php bin/console doctrine:schema:update --env=dev --force
+######2 - Configure and then create DB
 
-#-loading db data 
-php bin/console doctrine:fixtures:load --env=dev
+```php bin/console doctrine:database:create```
 
+######3 - Update DB
 
+```php bin/console doctrine:schema:update --env=dev --force```
 
+######4 - loading db data 
+
+```php bin/console doctrine:fixtures:load --env=dev```
