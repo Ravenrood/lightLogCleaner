@@ -38,6 +38,10 @@ class EventRequestFixtures extends Fixture implements DependentFixtureInterface
         );
     }
 
+    /**
+     * Add Event Request Fixtures to DB
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $this->state[] = $this->getReference(StateFixtures::STATE_DONE);

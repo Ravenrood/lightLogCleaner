@@ -37,6 +37,11 @@ class EventLogFixtures extends Fixture implements DependentFixtureInterface
         );
     }
 
+    /**
+     * Add Event Log Fixtures to DB
+     * @param ObjectManager $manager
+     * @throws \Exception
+     */
     public function load(ObjectManager $manager)
     {
         $this->state[] = $this->getReference(StateFixtures::STATE_DONE);

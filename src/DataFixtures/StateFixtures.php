@@ -20,6 +20,10 @@ class StateFixtures extends Fixture
     public const STATE_DONE = 'stateDone';
     public const STATE_ERROR = 'stateError';
 
+    /**
+     * Add State Fixtures
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         /**
