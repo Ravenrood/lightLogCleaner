@@ -22,10 +22,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LogCleanerController extends AbstractController implements MessageInterface, StateInterface
 {
-
     /**
      * @Route("/")
      * @param Request $request
+     * @param LogCompression $logCompression
      * @param FormatJsonResponse $jsonResponse
      * @param AddEventLog $addEventLog
      * @param UpdateEventLog $updateEventLog
@@ -41,7 +41,7 @@ class LogCleanerController extends AbstractController implements MessageInterfac
         $oldDate->modify('-1 day');
         $oldEvents = $searchOldEvents->getOldEvents($oldDate);
         if (empty($oldEvents)) {
-            return $jsonResponse->formatResponse(200,true,self::MESSAGE_DONE);
+            return $jsonResponse->formatResponse(JsonResponse::HTTP_OK,true,self::MESSAGE_DONE);
         }
         foreach ($oldEvents as $event) {
             $eventCollection = $event->getEventRequest()->toArray();
@@ -51,6 +51,6 @@ class LogCleanerController extends AbstractController implements MessageInterfac
             $event->setNote(self::MESSAGE_COMPRESSED);
             $updateEventLog->updateEventLog($event);
         }
-        return $jsonResponse->formatResponse(200,true,self::MESSAGE_DONE);
+        return $jsonResponse->formatResponse(JsonResponse::HTTP_OK,true,self::MESSAGE_DONE);
     }
 }
