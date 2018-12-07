@@ -8,10 +8,11 @@
 
 namespace App\Service;
 
+use App\Controller\MessageInterface;
 use App\Entity\EventRequest;
 use Doctrine\ORM\EntityManagerInterface;
 
-class LogCompression
+class LogCompression implements MessageInterface
 {
     protected $em;
 
@@ -37,7 +38,7 @@ class LogCompression
         $response = $eventRequest->getResponse();
         $eventRequest->setResponse(gzcompress ($response));
 
-        $eventRequest->setNote('compressed');
+        $eventRequest->setNote(self::MESSAGE_COMPRESSED);
 
         $this->em->persist($eventRequest);
         $this->em->flush();

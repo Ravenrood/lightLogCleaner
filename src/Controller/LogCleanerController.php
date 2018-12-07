@@ -48,7 +48,7 @@ class LogCleanerController extends AbstractController implements MessageInterfac
             foreach ($eventCollection as $eventLog) {
                 $updatedEventLog = $logCompression->compressEventLogData($eventLog);
             }
-            $event->setNote('compressed');
+            $event->setNote(self::MESSAGE_COMPRESSED);
             $updateEventLog->updateEventLog($event);
         }
         return $jsonResponse->formatResponse(200,true,self::MESSAGE_DONE);

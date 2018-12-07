@@ -13,4 +13,5 @@ interface MessageInterface
 {
     const MESSAGE_DONE = 'clearing completed';
     const MESSAGE_ERROR = 'clearing failed';
+    const MESSAGE_COMPRESSED = 'commpressed';
 }
